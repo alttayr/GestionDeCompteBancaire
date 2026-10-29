@@ -19,8 +19,8 @@ public class gestionDeCompte {
         System.out.println("5. De l'aide");
         System.out.println(); // ligne ajouté a la correction
         System.out.print("Votre choix : ");
-// commentaire bidon pour le tezt
-        choixMenu = lectureClavier.nextByte();
+// commentaire bidon pour le test du push
+x        choixMenu = lectureClavier.nextByte();
 
         switch(choixMenu){
 
