@@ -14,12 +14,12 @@ public class gestionDeCompte {
 
         System.out.println("1. Creer un compte");
         System.out.println("2. Afficher un compte");
-        System.out.println("3. Creer une ligne comptable");
+        System.out.println("3. Ecrire une ligne comptable");
         System.out.println("4. Sortir");
         System.out.println("5. De l'aide");
         System.out.println(); // ligne ajouté a la correction
         System.out.print("Votre choix : ");
-
+// commentaire bidon pour le tezt
         choixMenu = lectureClavier.nextByte();
 
         switch(choixMenu){
