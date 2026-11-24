@@ -10,9 +10,10 @@ public class gestionDeCompte
         byte choix;
         int valeur, date ; // variable valeur et date pas dans la correction pour l'instant mais je pense que valeur sera en double
           // correction: j'avait pas initialisé ces 2 et a la place de numeroLu: verifierCompteExistant = 0; et numeroDeCompte a la place de numéroCpte
-        long numéroCpte = 0, numéroLu = 0;
+        String numéroCpte = "", numéroLu = "";
+        String typeCpte = "";
         double taux = 0, val_courante = 0;
-        char typeCpte = '\n', theme, moyenDePaiement; // correction : char typeDeCompte = '\0' , les variable theme et moyenDePaiement
+        char theme, moyenDePaiement; // correction : char typeDeCompte = '\0' , les variable theme et moyenDePaiement
 
         Scanner lectureClavier = new Scanner(System.in);
        do
@@ -26,16 +27,25 @@ public class gestionDeCompte
                 {  // exercice n'a pas demandé d'ajoute une controle de saisie boucle do ...while mais j'aurais du prendre l'initiative
                     System.out.println("1"); // cette ligne n'est pas dans la correction
                     System.out.println("Type de compte: (C)courant, (J)joint, (E)epargne");
-                    typeCpte = lectureClavier.next().charAt(0);
-                }while (typeCpte != 'C' && typeCpte != 'J' && typeCpte != 'E');
-                if (typeCpte == 'E')
+                    typeCpte = lectureClavier.next();
+                }while (!typeCpte.equals("C") && !typeCpte.equals("J") && !typeCpte.equals("E"));
+                if (typeCpte.equals("E"))
                 {
                     System.out.print("taux de placement: ");
                     taux  = lectureClavier.nextDouble();
                 }
+                switch (typeCpte) {
+                    case "C" : typeCpte = "courant";
+                    break;
+                    case "J" : typeCpte = "joint";
+                    break;
+                    case "E" : typeCpte = "épargne";
+                    break;
+                }
+
 
                 System.out.println("Numero de compte:");
-                numéroCpte = lectureClavier.nextLong();
+                numéroCpte = lectureClavier.next();
                 System.out.println("Première valeur créditée");
                 val_courante = lectureClavier.nextDouble();
 
@@ -56,8 +66,8 @@ public class gestionDeCompte
             case 2 :
                 //demande à l'tilisateur de saisir le numéro du compte à afficher
                 System.out.print(" Quel compte souhaitez vous afficher ? : "); //j'avais mis dans la fonction afficherCpte
-                numéroLu = lectureClavier.nextLong(); //j'avais mis dans la fonction afficherCpte
-                if (numéroCpte == numéroLu) afficherCpte(numéroCpte, typeCpte, taux, val_courante); //j'avais mis la condition dans la fonction'
+                numéroLu = lectureClavier.next(); //j'avais mis dans la fonction afficherCpte
+                if (numéroCpte.equals(numéroLu)) afficherCpte(numéroCpte, typeCpte, taux, val_courante); //j'avais mis la condition dans la fonction'
                 else IO.print("Le systeme ne connait pas ce compte " + numéroLu);
 
 
@@ -145,12 +155,12 @@ public class gestionDeCompte
         System.out.println("5"); // c'est ce que j'ai mis, au dessus je l'ai rajouté a la correction
 
     }
-    public static void afficherCpte(long numéroCpte ,char typeCpte, double taux, double val_courante  )
+    public static void afficherCpte(String numéroCpte ,String typeCpte, double taux, double val_courante  )
     {
             System.out.print("Le compte n° : " + numéroCpte + " est un compte ");
-            if (typeCpte == 'C') System.out.println(" courant  ");
-            else if (typeCpte == 'J') System.out.println(" joint  ");
-            else if (typeCpte == 'E') {
+            if (typeCpte.equals("courant")) System.out.println(" courant  ");
+            else if (typeCpte.equals("joint")) System.out.println(" joint  ");
+            else if (typeCpte.equals("épargne")) {
                 //affiche son taux dans le cas d'un compte épargne.
                 System.out.println("epargne  dont le taux est  " + taux);
             }
